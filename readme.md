@@ -5,3 +5,8 @@
 
 實際上使用 docker 可以構成相同目的，但 本地開啟虛擬機仍有與 docker 不相同之處。因此主要用來版本控制 vagrantfile 。
 
+## Ansible 版本注意事項
+
+請小心不要讓 inventroy 保存所有主機相關資訊，請愛用 inventory 加密模式進行加密，
+
+附上的 inventory 是 明文參考範本，讓新手練習的範例檔案。
