@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
       machine.vm.network "private_network", ip: "192.168.50.#{200+machine_id}"
 
       unless File.exist?("./storage/home_disk-50-20#{machine_id}-0.vmdk")
-        vb.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
+        machine.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
       end
 
       machine.vm.provider "virtualbox" do |vb|
