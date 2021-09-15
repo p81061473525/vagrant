@@ -68,11 +68,11 @@ Vagrant.configure("2") do |config|
       machine.vm.hostname = "ac-50-20#{machine_id}"
       machine.vm.network "private_network", ip: "192.168.50.#{200+machine_id}"
 
-      unless File.exist?("./storage/home_disk-50-20#{machine_id}-0.vmdk")
-        machine.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
-      end
-
       machine.vm.provider "virtualbox" do |vb|
+        unless File.exist?("./storage/home_disk-50-20#{machine_id}-0.vmdk")
+          machine.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
+        end
+        
         # 設定 SATA controller 掛載 五顆硬碟 2GB 硬碟，
         # https://github.com/numenta/nupic/issues/2311 , commit : elliotholden commented on 28 Jul 2020
         # 迴圈參考 vagrant 官方網站，https://www.vagrantup.com/docs/provisioning/ansible 寫法教學。
