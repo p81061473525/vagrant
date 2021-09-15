@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
 
       machine.vm.provider "virtualbox" do |vb|
         unless File.exist?("./storage/home_disk-50-20#{machine_id}-0.vmdk")
-          machine.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
+          vb.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
         end
         
         # 設定 SATA controller 掛載 五顆硬碟 2GB 硬碟，
