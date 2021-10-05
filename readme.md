@@ -10,3 +10,7 @@
 請小心不要讓 inventroy 保存所有主機相關資訊，請愛用 inventory 加密模式進行加密，
 
 附上的 inventory 是 明文參考範本，讓新手練習的範例檔案。
+
+## 懶人包
+
+` git clone https://github.com/p81061473525/vagrant.git -b ansible ; cd .\vagrant\ ; vagrant up ; vangrat snapshot 1`
