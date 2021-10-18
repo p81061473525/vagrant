@@ -12,6 +12,7 @@
 # TGBOG,LINEBOT 安裝完成通知問題
 #############################
 
+# 走記得更改 第 35 行。 public ip 
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
 
@@ -25,13 +26,13 @@ Vagrant.configure("2") do |config|
     sudo sed -i '/^PasswordAuthentication no/d' /etc/ssh/sshd_config
     sudo systemctl restart sshd
   SHELL
-
+  
     # 控制端另外寫。
   config.vm.define "as-50-200" do |machine|
     machine.vm.box = "centos/7"
     machine.vm.hostname = "as-50-200"
     machine.vm.network "private_network", ip: "192.168.50.200"
-
+    # machine.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "127.0.0.1", id: "ssh", auto_correct: true
     machine.vm.provision "shell", inline: <<-SHELL
     # 套件升級，安裝常用程式
       sudo yum install ansible -y
@@ -67,7 +68,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "ac-50-20#{machine_id}" do |machine|
       machine.vm.hostname = "ac-50-20#{machine_id}"
       machine.vm.network "private_network", ip: "192.168.50.#{200+machine_id}"
-
+     
       machine.vm.provider "virtualbox" do |vb|
         unless File.exist?("./storage/home_disk-50-20#{machine_id}-0.vmdk")
           vb.customize ['storagectl', :id, '--name', 'SATA', '--add', 'sata']
