@@ -27,6 +27,8 @@ Vagrant.configure("2") do |config|
     # 開放 ssh 密碼訪問
     sudo sed -i '/^PasswordAuthentication no/d' /etc/ssh/sshd_config
     sudo systemctl restart sshd
+    # 讓 TG BOT 告訴你主機好了，那就不用切換背景查看到底好了沒。
+    # curl "https://api.telegram.org/bot機器人/sendMessage?chat_id=頻道&text=主機好了喔!!!!!!"
   SHELL
   
     # 控制端另外寫。
